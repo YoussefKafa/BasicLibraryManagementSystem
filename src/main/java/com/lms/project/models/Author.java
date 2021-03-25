@@ -2,6 +2,7 @@ package com.lms.project.models;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +18,10 @@ public class Author {
 	private Long id;
 String name;
 int age;
-@ManyToMany
+@ManyToMany(cascade = {
+        CascadeType.PERSIST,
+        CascadeType.MERGE
+    })
 @JoinTable(
   name = "author_books", 
   joinColumns = @JoinColumn(name = "author_id"), 
